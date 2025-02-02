@@ -111,7 +111,9 @@ After a lot of effort we made a 2D version of the original layout
 
 # Video
 
+
 https://drive.google.com/file/d/1FydfGUWZsmJOJ-yUyCh2tpnFZDUJ9JC3/view?usp=drive_link
+
 
 Explain what the video demonstrates
 Game Setup & UI Overview – Showing how players can start a new game, choose opponents (AI or human), and navigate the interface.
