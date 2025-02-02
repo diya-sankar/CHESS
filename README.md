@@ -1,8 +1,5 @@
 # CHESS
 
-Niharika .C
-10:16 AM (1 minute ago)
-to me
 
 # Hogwarts Chess Battle ♟
 
