@@ -1,0 +1,21 @@
+{
+  "name": "chessboard-project",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Niharikaneelu <niharikaneelu15@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "chessboardjs": "^0.0.2",
+    "chess.js": "^1.0.0"
+  }
+}

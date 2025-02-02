@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Game</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include Chessboard.js CSS (only once) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #board1 {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Chess Game</h1>
+    <div id="board1"></div>
+    <button id="startBtn">Start Game</button>
+    <button id="clearBtn">Clear Board</button>
+    <button id="undoBtn">Undo Move</button>
+
+    <div id="move-history"></div>
+
+    <!-- Include chess.js and chessboard.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.js"></script>
+
+    <script>
+        var game = new Chess();
+
+        var board = ChessBoard('board1', {
+            draggable: true,
+            dropOffBoard: 'trash',
+            sparePieces: true,
+            onDrop: handleMove
+        });
+
+        var moveHistory = [];
+
+        // Start the game
+        document.getElementById('startBtn').addEventListener('click', function() {
+            game.reset();
+            board.start();
+            moveHistory = [];
+            renderMoveHistory();
+        });
+
+        // Clear the board
+        document.getElementById('clearBtn').addEventListener('click', function() {
+            game.clear();
+            board.clear();
+            moveHistory = [];
+            renderMoveHistory();
+        });
+
+        // Undo the last move
+        document.getElementById('undoBtn').addEventListener('click', function() {
+            game.undo();
+            board.position(game.fen());
+            moveHistory.pop();
+            renderMoveHistory();
+        });
+
+        // Handle move
+        function handleMove(source, target) {
+            var move = game.move({
+                from: source,
+                to: target,
+                promotion: 'q'
+            });
+
+            // If move is illegal, return piece to its original position
+            if (move === null) return 'snapback';
+
+            // Update the board and move history
+            renderMoveHistory();
+            board.position(game.fen());
+        }
+
+        // Render move history
+        function renderMoveHistory() {
+            var moves = game.history();
+            document.getElementById('move-history').innerHTML = moves.join(' ');
+        }
+    </script>
+
+</body>
+</html>
